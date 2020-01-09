@@ -27,12 +27,10 @@ class Analyzer:
 
     @staticmethod
     def _extract_repo_name(path):
-        """Extracts the name of the repository given its path."""
         _, repo_name = os.path.split(path)
         return repo_name
 
     def run(self) -> None:
-        """Runs the analysis."""
         self._get_tests()
         if not self._flaky_testcases:
             self._write_output_csv(2)
@@ -59,7 +57,6 @@ class Analyzer:
 
 
     def _analyse_test_results(self):
-        """Compares the test results in order to find flaky tests."""
         for test_case in self._test_cases:
             testcase_hierarchy = test_case[0].split(".")
             filename = ""
@@ -98,7 +95,6 @@ class Analyzer:
 
 
     def _write_output_csv(self, completed_testsuite):
-        """Write the analysis summary to a file and sort it."""
         csvdirectory = self._config.output
         if completed_testsuite != 0:
             if completed_testsuite == 1:
